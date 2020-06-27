@@ -33,5 +33,5 @@ app.use((error, req, res, next) => {
   res.status(status).json({ message: message, data: data });
 });
 
-console.log(`App listening at ${config.app.port}`)
-app.listen(config.app.port);
+console.log(`App listening at ${process.env.PORT || config.app.port}`);
+app.listen((process.env.PORT || config.app.port));

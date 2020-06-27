@@ -1,7 +1,7 @@
 module.exports={
   'app': {
       'host': '0.0.0.0',
-      'port': 80
+      'port': 3000
   },
   'mongo': {
       'host': '127.0.0.1',
