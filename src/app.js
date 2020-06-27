@@ -1,7 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoConnect = require('./utils/mongoConnect');
-const config = require('./config/dev');
+const env = process.env.ENVIRONMENT;
+const config = require(`./config/${env}`);
 /** Routes */
 const authRoutes = require('./routes/authRoutes');
 
