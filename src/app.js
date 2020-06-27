@@ -20,7 +20,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/.netlify/functions/api/auth', authRoutes);
+app.use('/api/auth', authRoutes);
 
 
 mongoConnect.initialize();
