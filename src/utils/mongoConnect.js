@@ -5,7 +5,6 @@ const mongoose = function () {
   const config = require(`../config/${process.env.ENVIRONMENT}`);
   let connectionURI;
   if(process.env.ENVIRONMENT === 'prod'){
-    console.log(process.env.ENVIRONMENT, process.env.username, process.env.password, process.env.dbName);
     connectionURI = `mongodb+srv://${process.env.username}:${process.env.password}@cluster0-kiuu9.mongodb.net/${process.env.dbName}?retryWrites=true&w=majority`;
   }
   else {
