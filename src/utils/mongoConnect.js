@@ -2,8 +2,14 @@
 const mongoose = function () {
   const fs = require("fs");
   const Mongoose = require('mongoose');
-  const config = !!process.env.ENVIRONMENT ? require(`../config/${process.env.ENVIRONMENT}`) : require("../config/dev");
-  const connectionURI = `mongodb://${config.mongo.host}:${config.mongo.port}/${config.mongo.db}`;
+  const config = require(`../config/${process.env.ENVIRONMENT}`);
+  if(process.env.ENVIRONMENT === 'prod'){
+    const connectionURI = `mongodb+srv://${process.env.username}:${process.env.password}@cluster0-kiuu9.mongodb.net/${process.env.dbName}?retryWrites=true&w=majority`;
+    
+  }
+  else {
+    const connectionURI = `mongodb://${config.mongo.host}:${config.mongo.port}/${config.mongo.db}`;
+  }
   const path = require("path");
   console.log("Connecting...", connectionURI)		
   Mongoose.connect(connectionURI, { useNewUrlParser: true, useUnifiedTopology: true });
