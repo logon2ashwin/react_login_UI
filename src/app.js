@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoConnect = require('./utils/mongoConnect');
-const serverless = require('serverless-http');
 const config = require('./config/dev');
 /** Routes */
 const authRoutes = require('./routes/authRoutes');
