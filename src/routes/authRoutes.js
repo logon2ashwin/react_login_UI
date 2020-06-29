@@ -108,8 +108,7 @@ let updateClient = async (req, res) => {
 }
 
 let getMaxBill = async (req, res) => {
-  let agencyId = mongoose.Types.ObjectId(req.body.agencyId); 
-  client.findOne({ agencyId: agencyId })
+  client.findOne()
     .sort({ totalBill: -1 })
     .select({ agencyId: 1,  name: 1, totalBill: 1, _id:0 })
     .exec((err, results) => {
