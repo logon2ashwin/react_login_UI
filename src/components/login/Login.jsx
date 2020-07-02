@@ -126,14 +126,14 @@ class Login extends Component {
         gender = 'female'
       }
       else {
-        alert('Gender not selacted');
+        alert('Gender not selected');
       }
       // Country Check
       if(this.signupCountry.current.value!=="0") {
         country = this.signupCountry.current.value
       }
       else {
-        alert('Country not selacted');
+        alert('Country not selected');
       }
       return {
         userName: this.signupUsername.current.value,
@@ -156,9 +156,9 @@ class Login extends Component {
       url,
       data,
     };
-    console.log(apiConfig);
     axios(apiConfig)
       .then(function (response) {
+        alert(JSON.stringify(response.data));
         console.log(response.data);
       });
   };
