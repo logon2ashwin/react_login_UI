@@ -18,7 +18,7 @@ class Login extends Component {
     this.signupUsername = createRef();
     this.signupFirstname = createRef();
     this.signupLastName = createRef();
-    this.sugnupEmail = createRef();
+    this.signupEmail = createRef();
     this.signupPassword = createRef();
     this.signupGender = createRef();
     this.signupCountry = createRef();
@@ -55,20 +55,34 @@ class Login extends Component {
           <label className="login-label" onClick={() => this.signupLastName.current.focus()}> Last Name </label>
         </div>
         <div className="login-input-holder">
-          <input className="login-input" ref={this.sugnupEmail} type="email" required />
-          <label className="login-label" onClick={() => this.sugnupEmail.current.focus()}> Email </label>
+          <input className="login-input" ref={this.signupEmail} type="email" required />
+          <label className="login-label" onClick={() => this.signupEmail.current.focus()}> Email </label>
         </div>
         <div className="login-input-holder">
           <input className="login-input" ref={this.signupPassword} type="password" required />
           <label className="login-label" onClick={() => this.signupPassword.current.focus()}> Password </label>
         </div>
-        <div className="login-input-holder">
-          <input className="login-input" ref={this.signupGender} type="text" required />
-          <label className="login-label" onClick={() => this.signupGender.current.focus()}> Gender </label>
+        <div className="login-input-holder radio" ref={this.signupGender}>
+          <label className="login-radio-head"> Gender </label>
+          <div className="login-radio-buttons">
+            <div className="login-radio">
+                <input id="male" name="gender" type="radio" />
+                <label htmlFor="male" className="login-radio-label">Male</label>
+            </div>
+            <div className="login-radio">
+                <input id="female" name="gender" type="radio" />
+                <label htmlFor="female" className="login-radio-label">Female</label>
+            </div>
+          </div>
         </div>
-        <div className="login-input-holder">
-          <input className="login-input" ref={this.signupCountry} type="text" required />
-          <label className="login-label" onClick={() => this.signupCountry.current.focus()}> Country </label>
+        <div className="login-input-holder select">
+        <select className="login-select" ref={this.signupCountry} id="country" name="country" selected="Country">
+          <option className="login-select-options" value="0">Country</option>
+          <option className="login-select-options" value="india">India</option>
+          <option className="login-select-options" value="china">China</option>
+          <option className="login-select-options" value="usa">USA</option>
+          <option className="login-select-options" value="russia">Russia</option>
+        </select>
         </div>
       </Fragment>
     );
@@ -76,6 +90,19 @@ class Login extends Component {
 
   switchForm = (event) => {
     event.preventDefault();
+    if(this.state.isLogin) {
+      this.loginUserName.current.value = "";
+      this.loginpassword.current.value = "";
+    }else {
+      this.signupUsername.current.value = "";
+      this.signupFirstname.current.value = "";
+      this.signupLastName.current.value = "";
+      this.signupEmail.current.value = "";
+      this.signupPassword.current.value = "";
+      this.signupGender.current.children[1].children[0].firstElementChild.checked = false;
+      this.signupGender.current.children[1].children[1].firstElementChild.checked = false;
+      this.signupCountry.current.value = "0";
+    }
     this.setState({
       isLogin: !this.state.isLogin,
     });
@@ -89,14 +116,33 @@ class Login extends Component {
       }
     }
     else {
+      let gender = '';
+      let country = '';
+      // Gender Check
+      if(this.signupGender.current.children[1].children[0].firstElementChild.checked) {
+        gender = 'male';
+      }
+      else if (this.signupGender.current.children[1].children[1].firstElementChild.checked){
+        gender = 'female'
+      }
+      else {
+        alert('Gender not selacted');
+      }
+      // Country Check
+      if(this.signupCountry.current.value!=="0") {
+        country = this.signupCountry.current.value
+      }
+      else {
+        alert('Country not selacted');
+      }
       return {
         userName: this.signupUsername.current.value,
         firstName: this.signupFirstname.current.value,
         lastName: this.signupLastName.current.value,
-        email: this.sugnupEmail.current.value,
+        email: this.signupEmail.current.value,
         password: this.signupPassword.current.value,
-        gender: this.signupGender.current.value,
-        country: this.signupCountry.current.value
+        gender,
+        country
       }
     }
   };
