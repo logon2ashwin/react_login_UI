@@ -17,7 +17,6 @@ class Login extends Component {
     this.state = {
       isLogin: true,
     };
-    // this.getBodyData.bind(this);
     //  Refs for loginform
     this.loginUserName = createRef();
     this.loginpassword = createRef();
