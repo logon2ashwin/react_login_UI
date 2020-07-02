@@ -169,6 +169,7 @@ class Login extends Component {
           self.props.history.push("/dashboard");
         }
         else {
+          alert("User has been created login to continue");
           self.switchForm();
         }
       });
