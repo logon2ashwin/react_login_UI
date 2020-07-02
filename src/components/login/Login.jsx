@@ -5,8 +5,17 @@ import config from "../../../config";
 import "./Login.scss";
 
 class Login extends Component {
-  constructor() {
+  constructor(props) {
     super();
+    if(localStorage.isLogged==="1") {
+      props.history.push("/dashboard", {
+        userId: localStorage.userId, 
+        token: localStorage.token, 
+        userName: localStorage.userName, 
+        firstName: localStorage.firstName, 
+        lastName: localStorage.lastName
+       });
+    }
     this.state = {
       isLogin: true,
     };
@@ -89,7 +98,7 @@ class Login extends Component {
   };
 
   switchForm = (event) => {
-    event.preventDefault();
+    if(event) event.preventDefault();
     if(this.state.isLogin) {
       this.loginUserName.current.value = "";
       this.loginpassword.current.value = "";
@@ -156,10 +165,21 @@ class Login extends Component {
       url,
       data,
     };
+    let self = this;
     axios(apiConfig)
       .then(function (response) {
-        alert(JSON.stringify(response.data));
-        console.log(response.data);
+        if(self.state.isLogin) {
+          localStorage.isLogged=1
+          localStorage.token = response.data.token;
+          localStorage.userId = response.data.userId;
+          localStorage.userName = response.data.userName;
+          localStorage.firstName = response.data.firstName;
+          localStorage.lastName = response.data.lastName;
+          self.props.history.push("/dashboard", { ...response.data });
+        }
+        else {
+          self.switchForm();
+        }
       });
   };
 

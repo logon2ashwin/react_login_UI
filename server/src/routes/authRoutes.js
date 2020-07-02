@@ -60,7 +60,14 @@ let signIn = async (req, res, next) => {
             'PrimaryKeyForJWT',
             { expiresIn: '2h' }
         );
-        res.status(200).json({ message: 'success', token: token, userId: loadedUser._id.toString() });
+        res.status(200).json({ 
+            message: 'success', 
+            token: token, 
+            userId: loadedUser._id.toString(),
+            userName: loadedUser.userName,
+            firstName: loadedUser.firstName,
+            lastName: loadedUser.lastName
+        });
     } catch (error) {
         if (!error.statusCode) {
             error.statusCode = 500;

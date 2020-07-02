@@ -1,0 +1,27 @@
+$appNotesBG: #9FA8DA;
+$appNavBgColor: #3D5AFE;
+$appInputboxText: #E8EAF6;
+
+.app-dashboard {
+  font-family: jost;
+  color: $appNavBgColor;
+  p {
+    color: $appNavBgColor;
+  }
+  button {
+    font-family: 'jost';
+    background-color: $appNavBgColor;
+    color: $appInputboxText;
+    height: 35px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    padding: 0px 15px;
+    cursor: pointer;
+    outline: none;
+    transition: box-shadow ease 0.5s;
+    &:hover {
+        box-shadow: 0px 0 10px 0 $appInputboxText;
+    }
+  }
+}
