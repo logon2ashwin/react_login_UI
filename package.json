@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prestartnode": "export ENVIRONMENT=dev",
     "startnode": "cd ./server/src;nodemon --inspect app.js",
     "startApp": "webpack-dev-server --mode=development --watch"
   },
