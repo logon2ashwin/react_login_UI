@@ -1,0 +1,29 @@
+{
+  "name": "login_express_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/app.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "express-validator": "^6.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.9"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "core-js": "^2.6.11",
+    "cors": "^2.8.5",
+    "nodemon": "^1.19.4"
+  },
+  "engines": {
+    "node": ">=13"
+  },
+  "author": "Ashwin",
+  "license": "ISC"
+}

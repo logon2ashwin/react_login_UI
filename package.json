@@ -1,29 +1,48 @@
 {
-  "name": "sample_express_server",
+  "name": "react_login_UI",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./src/app.js"
+    "prestartnode": "export ENVIRONMENT=dev",
+    "startnode": "cd ./server/src;nodemon --inspect app.js",
+    "startApp": "webpack-dev-server --mode=development --watch"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.18.3",
-    "express": "^4.16.3",
-    "express-validator": "^6.4.0",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.9"
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
-    "chai": "^4.2.0",
-    "core-js": "^2.6.11",
-    "cors": "^2.8.5",
-    "nodemon": "^1.18.4"
+    "@babel/core": "^7.9.6",
+    "@babel/plugin-proposal-object-rest-spread": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
+    "babel-loader": "^8.1.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.5.3",
+    "file-loader": "^6.0.0",
+    "html-webpack-plugin": "^4.3.0",
+    "node-sass": "^4.14.0",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
   },
-  "engines": {
-    "node": ">=13"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/logon2ashwin/react_login_UI.git"
   },
+  "keywords": [],
   "author": "Ashwin",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/logon2ashwin/react_login_UI/issues"
+  },
+  "homepage": "https://github.com/logon2ashwin/react_login_UI#readme"
 }
