@@ -1,21 +1,19 @@
 import React, { Component, Fragment, createRef } from "react";
 import axios from "axios";
-import bcrypt from "bcryptjs";
+import { connect } from "react-redux";
+import { login } from "store/actions";
 import config from "../../../config";
 import "./Login.scss";
+
+const mapDispatchToProps = () =>  {
+  return {
+    login
+  }
+}
 
 class Login extends Component {
   constructor(props) {
     super();
-    if(localStorage.isLogged==="1") {
-      props.history.push("/dashboard", {
-        userId: localStorage.userId, 
-        token: localStorage.token, 
-        userName: localStorage.userName, 
-        firstName: localStorage.firstName, 
-        lastName: localStorage.lastName
-       });
-    }
     this.state = {
       isLogin: true,
     };
@@ -32,7 +30,6 @@ class Login extends Component {
     this.signupGender = createRef();
     this.signupCountry = createRef();
   }
-
   getLoginForm = () => {
     return (
       <Fragment>
@@ -169,13 +166,8 @@ class Login extends Component {
     axios(apiConfig)
       .then(function (response) {
         if(self.state.isLogin) {
-          localStorage.isLogged=1
-          localStorage.token = response.data.token;
-          localStorage.userId = response.data.userId;
-          localStorage.userName = response.data.userName;
-          localStorage.firstName = response.data.firstName;
-          localStorage.lastName = response.data.lastName;
-          self.props.history.push("/dashboard", { ...response.data });
+          self.props.login(response.data);
+          self.props.history.push("/dashboard");
         }
         else {
           self.switchForm();
@@ -198,4 +190,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default connect(null,mapDispatchToProps())(Login);

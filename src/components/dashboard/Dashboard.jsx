@@ -1,43 +1,27 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {signout as signoutAction} from "store/actions";
 import "./dashboard.scss"
 
 
 const Dashboard = (props) => {
-  const [ userData, setUserData ] = useState({
-    firstName : '',
-    lastName: '',
-    token: '',
-    userId: ''
-  });
-
+  const { firstName, lastName, token, userId, isLogged } = useSelector(state => state.userdata);
+  const dispatch = useDispatch();
   useEffect(() => {
-    if(localStorage.isLogged !=="1") {
+    if(!isLogged) {
       props.history.push("/login");
-    }
-    else {
-      setUserData(prevState => {
-        return {
-          ...prevState,
-          ...props.location.state
-        }
-      });
     }
   },[]);
   let signout = () => {
-    localStorage.userId = null
-    localStorage.token = null
-    localStorage.userName = null
-    localStorage.firstName = null
-    localStorage.lastName = null
-    localStorage.isLogged = 0
+    dispatch(signoutAction());
     props.history.push("/login");
   };
 
   return (
   <div className="app-dashboard">
-    <p>Hi {`${userData.firstName} ${userData.lastName}`}</p>
-    <p>Your Bearer Token is "{userData.token}"</p>
-    <p>Your User ID is "{userData.userId}"</p>
+    <p>Hi {`${firstName} ${lastName}`}</p>
+    <p>Your Bearer Token is "{token}"</p>
+    <p>Your User ID is "{userId}"</p>
     <button onClick={()=> signout()}>Sign Out</button>
   </div>
   );

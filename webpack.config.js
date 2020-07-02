@@ -24,6 +24,9 @@ module.exports = (env, options) => {
     devtool: isDevMode ? "source-map" : false,
     resolve: {
       extensions: [".jsx", ".js"],
+      alias : {
+        store: path.resolve(__dirname, 'store/')
+      }
     },
     module: {
       rules: [
