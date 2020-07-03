@@ -172,6 +172,14 @@ class Login extends Component {
           alert("User has been created login to continue");
           self.switchForm();
         }
+      })
+      .catch(err => {
+        if(err.response.data.message) {
+          alert(err.response.data.message);
+        }
+        if(err.response.data.errors.length) {
+          alert(err.response.data.errors[0].msg);
+        }
       });
   };
 
